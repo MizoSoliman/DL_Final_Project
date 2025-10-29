@@ -12,7 +12,7 @@ import base64
 
 # ========= Setting Up the Page ==========
 
-st.set_page_config(page_title="🌿 Plant Disease Classifier", layout="centered")
+st.set_page_config(page_title="🌿 Plant Disease Recognition", layout="centered")
 
 st.markdown("<h1 class='title'>🌿 Plant Disease Recognition System</h1>", unsafe_allow_html=True)
 
@@ -194,4 +194,5 @@ st.markdown("""
      <hr style="border:1px solid #ffffff30; margin-top:40px;">
      <p style="text-align:center; color:#f0f0f0;">Developed by <b>Mazin Soliman</b> 🌱</p>
     """, unsafe_allow_html=True)
+
 
