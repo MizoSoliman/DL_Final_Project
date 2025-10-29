@@ -83,8 +83,23 @@ set_background("WhatsApp_Image_2025-06-25_at_09.41.01_f4759548.webp" , brightnes
 
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model('plant_disease_recog_model_pwp.keras')
-    return model    
+    
+    file_id = "1sWWrtDQEJS2-kLXUVN5H_gZNI5UB3qQG"
+    download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+
+  
+    response = requests.get(download_url)
+    response.raise_for_status()  
+
+    
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".keras") as tmp:
+        tmp.write(response.content)
+        tmp_path = tmp.name
+
+    
+    model = tf.keras.models.load_model(tmp_path)
+    return model
+
 
 model = load_model()
 
@@ -179,3 +194,4 @@ st.markdown("""
      <hr style="border:1px solid #ffffff30; margin-top:40px;">
      <p style="text-align:center; color:#f0f0f0;">Developed by <b>Mazin Soliman</b> 🌱</p>
     """, unsafe_allow_html=True)
+
