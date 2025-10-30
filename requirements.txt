@@ -2,3 +2,4 @@ numpy==1.26.4
 Pillow==11.1.0
 streamlit==1.50.0
 tensorflow==2.20.0
+requests
