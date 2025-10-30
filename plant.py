@@ -9,6 +9,7 @@ import os
 import json
 from io import BytesIO
 import base64
+import requests
 
 # ========= Setting Up the Page ==========
 
@@ -194,5 +195,6 @@ st.markdown("""
      <hr style="border:1px solid #ffffff30; margin-top:40px;">
      <p style="text-align:center; color:#f0f0f0;">Developed by <b>Mazin Soliman</b> 🌱</p>
     """, unsafe_allow_html=True)
+
 
 
