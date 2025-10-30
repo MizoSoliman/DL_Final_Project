@@ -85,24 +85,22 @@ set_background("WhatsApp_Image_2025-06-25_at_09.41.01_f4759548.webp" , brightnes
 
 @st.cache_resource
 def load_model():
-    # File ID الخاص بالموديل على Google Drive
+    # ID الملف من Google Drive
     file_id = "1NtN1XD6Xk__yFLYb9ffvPjfVYYTJp_Y1"
-    download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    download_url = f"https://drive.google.com/uc?id={file_id}"
 
-    # نجّري طلب التحميل
-    response = requests.get(download_url)
-    response.raise_for_status()  # لو فيه خطأ في الـ HTTP، يوقف هنا
-
-    # نكتب المحتوى في ملف مؤقت
+    # نحدد مسار مؤقت لتحميل الموديل
     with tempfile.NamedTemporaryFile(delete=False, suffix=".keras") as tmp:
-        tmp.write(response.content)
         tmp_path = tmp.name
 
-    # نحمّل الموديل من الملف المؤقت
+    # تحميل باستخدام gdown (يتعامل مع Google Drive تلقائيًا)
+    gdown.download(download_url, tmp_path, quiet=False)
+
+    # تحميل الموديل بعد التحميل
     model = tf.keras.models.load_model(tmp_path)
     return model
 
-# بعد كده في ملفك الرئيسي:
+# تحميل الموديل وقت تشغيل التطبيق
 model = load_model()
 
 with open("plant_disease.json", 'r', encoding='utf-8') as file:
@@ -196,6 +194,7 @@ st.markdown("""
      <hr style="border:1px solid #ffffff30; margin-top:40px;">
      <p style="text-align:center; color:#f0f0f0;">Developed by <b>Mazin Soliman</b> 🌱</p>
     """, unsafe_allow_html=True)
+
 
 
 
